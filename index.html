@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ремонт и Электромонтаж</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #222;
+    background: #f5f7fa;
+  }
+  header {
+    background: #1e3a8a;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  header .logo { font-size: 22px; font-weight: bold; }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background .2s;
+  }
+  nav a:hover { background: #2d4fb3; }
+
+  main { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
+
+  /* Главная */
+  .hero { text-align: center; margin-bottom: 40px; }
+  .hero h1 { font-size: 32px; margin-bottom: 10px; }
+  .hero p { color: #555; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.15);
+  }
+  .card img {
+    width: 100%; height: 200px;
+    object-fit: cover; display: block;
+  }
+  .card-content { padding: 20px; }
+  .card h3 { color: #1e3a8a; margin-bottom: 10px; }
+
+  /* Страницы разделов */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #1e3a8a;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .back-btn:hover { text-decoration: underline; }
+
+  .section-title {
+    font-size: 26px;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+  }
+  .section-desc {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 5px solid #1e3a8a;
+  }
+
+  /* Таблица услуг */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+  }
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  th {
+    background: #1e3a8a;
+    color: #fff;
+    font-weight: 600;
+  }
+  tr:hover td { background: #f0f4ff; }
+  .price { font-weight: bold; color: #15803d; white-space: nowrap; }
+  .unit { font-size: 12px; color: #888; }
+
+  /* Галерея */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 25px 0;
+  }
+  .gallery img {
+    width: 100%; height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform .2s;
+  }
+  .gallery img:hover { transform: scale(1.03); }
+
+  /* Контакты */
+  .contacts {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.06);
+  }
+  .contacts p { margin: 8px 0; }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    color: #888;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; gap: 10px; }
+    nav a { margin: 0 8px; }
+    .hero h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🔧 РемонтПро</div>
+  <nav>
+    <a href="#" onclick="showPage('home')">Главная</a>
+    <a href="#" onclick="showPage('repair')">Ремонт</a>
+    <a href="#" onclick="showPage('electric')">Электромонтаж</a>
+    <a href="#" onclick="showPage('contacts')">Контакты</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================= ГЛАВНАЯ ================= -->
+  <section id="home" class="page active">
+    <div class="hero">
+      <h1>Профессиональные ремонтные и электромонтажные работы</h1>
+      <p>Качественно, быстро, с гарантией. Выберите нужный раздел ниже.</p>
+    </div>
+
+    <div class="cards">
+      <a class="card" onclick="showPage('repair')">
+        <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=600" alt="Ремонтные работы">
+        <div class="card-content">
+          <h3>Ремонтные работы</h3>
+          <p>Отделка, штукатурка, покраска, плитка, укладка пола и многое другое.</p>
+        </div>
+      </a>
+
+      <a class="card" onclick="showPage('electric')">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600" alt="Электромонтажные работы">
+        <div class="card-content">
+          <h3>Электромонтажные работы</h3>
+          <p>Проводка, щитки, розетки, освещение, заземление — всё по нормам ПУЭ.</p>
+        </div>
+      </a>
+
+      <a class="card" onclick="showPage('contacts')">
+        <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=600" alt="Контакты">
+        <div class="card-content">
+          <h3>Контакты</h3>
+          <p>Свяжитесь с нами удобным способом — рассчитаем стоимость бесплатно.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= РЕМОНТ ================= -->
+  <section id="repair" class="page">
+    <a class="back-btn" onclick="showPage('home')">← Назад на главную</a>
+    <h2 class="section-title">Ремонтные работы</h2>
+
+    <div class="section-desc">
+      <p><b>Ремонтные работы</b> — это комплекс мероприятий по восстановлению, отделке и улучшению помещений: выравнивание стен, укладка плитки, покраска, монтаж полов, установка дверей и другие виды работ. Мы работаем с квартирами, домами и коммерческими объектами.</p>
+    </div>
+
+    <h3 style="margin-bottom:10px;">Иллюстрации</h3>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=400" alt="Ремонт 1">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400" alt="Ремонт 2">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400" alt="Ремонт 3">
+    </div>
+
+    <h3 style="margin-bottom:10px;">Виды работ и стоимость</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Вид работы</th>
+          <th>Цена за работу</th>
+          <th>Цена за 1 час</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Штукатурка стен</td><td class="price">450 ₽/м²</td><td class="price">700 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Покраска стен и потолков</td><td class="price">250 ₽/м²</td><td class="price">600 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Укладка плитки</td><td class="price">900 ₽/м²</td><td class="price">800 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Укладка ламината</td><td class="price">400 ₽/м²</td><td class="price">650 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Монтаж натяжного потолка</td><td class="price">600 ₽/м²</td><td class="price">750 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Установка дверей</td><td class="price">3 500 ₽/шт</td><td class="price">800 ₽ <span class="unit">/час</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= ЭЛЕКТРОМОНТАЖ ================= -->
+  <section id="electric" class="page">
+    <a class="back-btn" onclick="showPage('home')">← Назад на главную</a>
+    <h2 class="section-title">Электромонтажные работы</h2>
+
+    <div class="section-desc">
+      <p><b>Электромонтажные работы</b> — это прокладка и замена электропроводки, сборка электрощитов, установка розеток, выключателей, светильников, монтаж систем заземления и защиты. Все работы выполняются в соответствии с ПУЭ и действующими нормами безопасности.</p>
+    </div>
+
+    <h3 style="margin-bottom:10px;">Иллюстрации</h3>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400" alt="Электрика 1">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400" alt="Электрика 2">
+      <img src="https://images.unsplash.com/photo-1601462904263-f62af73d9c82?w=400" alt="Электрика 3">
+    </div>
+
+    <h3 style="margin-bottom:10px;">Виды работ и стоимость</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Вид работы</th>
+          <th>Цена за работу</th>
+          <th>Цена за 1 час</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Прокладка кабеля (штроба + монтаж)</td><td class="price">350 ₽/м.п.</td><td class="price">800 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Установка розетки / выключателя</td><td class="price">300 ₽/шт</td><td class="price">700 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Сборка электрощита</td><td class="price">от 5 000 ₽</td><td class="price">1000 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Монтаж люстры / светильника</td><td class="price">700 ₽/шт</td><td class="price">750 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Монтаж тёплого пола</td><td class="price">800 ₽/м²</td><td class="price">900 ₽ <span class="unit">/час</span></td></tr>
+        <tr><td>Заземление контура</td><td class="price">от 8 000 ₽</td><td class="price">1000 ₽ <span class="unit">/час</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ================= КОНТАКТЫ ================= -->
+  <section id="contacts" class="page">
+    <a class="back-btn" onclick="showPage('home')">← Назад на главную</a>
+    <h2 class="section-title">Контакты</h2>
+    <div class="contacts">
+      <p>📞 <b>Телефон:</b> +7 (900) 000-00-00</p>
+      <p>✉️ <b>Email:</b> info@remontpro.ru</p>
+      <p>📍 <b>Адрес:</b> г. Москва, ул. Примерная, д. 1</p>
+      <p>🕒 <b>Режим работы:</b> Пн–Вс, 8:00 – 21:00</p>
+      <p>💬 <b>WhatsApp / Telegram:</b> +7 (900) 000-00-00</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2025 РемонтПро. Все права защищены.
+</footer>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
